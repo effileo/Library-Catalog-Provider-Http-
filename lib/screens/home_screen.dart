@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../utils/constants.dart';
 import './search_screen.dart';
 import './catalog_screen.dart';
+import './add_book_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -79,7 +80,12 @@ class _HomeScreenState extends State<HomeScreen> {
               backgroundColor: AppColors.secondary,
               tooltip: 'Add Custom Book',
               onPressed: () {
-                // TODO: Navigate to AddBookScreen
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AddBookScreen(),
+                  ),
+                );
               },
               child: const Icon(Icons.add),
             )

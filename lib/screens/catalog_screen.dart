@@ -76,6 +76,29 @@ class CatalogScreen extends StatelessWidget {
                       color: Colors.grey,
                     ),
                   ),
+                  PopupMenuButton<String>(
+                    icon: const Icon(Icons.sort, color: AppColors.primary),
+                    tooltip: 'Sort books',
+                    onSelected: (value) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Sorted by $value')),
+                      );
+                    },
+                    itemBuilder: (context) => const [
+                      PopupMenuItem(
+                        value: 'title',
+                        child: Text('Sort by Title'),
+                      ),
+                      PopupMenuItem(
+                        value: 'author',
+                        child: Text('Sort by Author'),
+                      ),
+                      PopupMenuItem(
+                        value: 'year',
+                        child: Text('Sort by Year'),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),

@@ -44,6 +44,41 @@ class MyApp extends StatelessWidget {
             filled: true,
             fillColor: Colors.white,
           ),
+          cardTheme: CardTheme(
+            elevation: 2,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+          ),
+          snackBarTheme: SnackBarThemeData(
+            behavior: SnackBarBehavior.floating,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+            backgroundColor: const Color(0xFF323232),
+            contentTextStyle: const TextStyle(color: Colors.white, fontSize: 13),
+          ),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.primary,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            ),
+          ),
+          textButtonTheme: TextButtonThemeData(
+            style: TextButton.styleFrom(
+              foregroundColor: AppColors.primary,
+            ),
+          ),
+          chipTheme: const ChipThemeData(
+            backgroundColor: AppColors.background,
+            labelStyle: TextStyle(fontSize: 12),
+            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+          ),
         ),
         home: const HomeScreen(),
       ),

@@ -33,22 +33,6 @@ class _HomeScreenState extends State<HomeScreen> {
           style: AppTextStyles.headingLarge.copyWith(color: Colors.white),
         ),
         backgroundColor: AppColors.primary,
-        actions: [
-          if (_currentIndex == 0)
-            IconButton(
-              icon: const Icon(Icons.info_outline),
-              onPressed: () {
-                showAboutDialog(
-                  context: context,
-                  applicationName: AppConstants.appName,
-                  applicationVersion: '1.0.0',
-                  children: [
-                    const Text('A digital library catalog powered by Open Library API.'),
-                  ],
-                );
-              },
-            ),
-        ],
       ),
       body: IndexedStack(
         index: _currentIndex,

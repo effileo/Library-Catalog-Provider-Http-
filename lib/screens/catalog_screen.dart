@@ -54,55 +54,6 @@ class CatalogScreen extends StatelessWidget {
 
         return Column(
           children: [
-            // STATS BANNER
-            Container(
-              color: AppColors.primary.withOpacity(0.1),
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    '${provider.savedBooks.length} book(s) in your catalog',
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: AppColors.primary,
-                      fontSize: 14,
-                    ),
-                  ),
-                  const Text(
-                    'Swipe left to delete',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey,
-                    ),
-                  ),
-                  PopupMenuButton<String>(
-                    icon: const Icon(Icons.sort, color: AppColors.primary),
-                    tooltip: 'Sort books',
-                    onSelected: (value) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('Sorted by $value')),
-                      );
-                    },
-                    itemBuilder: (context) => const [
-                      PopupMenuItem(
-                        value: 'title',
-                        child: Text('Sort by Title'),
-                      ),
-                      PopupMenuItem(
-                        value: 'author',
-                        child: Text('Sort by Author'),
-                      ),
-                      PopupMenuItem(
-                        value: 'year',
-                        child: Text('Sort by Year'),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            
             // BOOKS LIST
             Expanded(
               child: ListView.builder(
@@ -110,82 +61,51 @@ class CatalogScreen extends StatelessWidget {
                 itemCount: provider.savedBooks.length,
                 itemBuilder: (context, index) {
                   final book = provider.savedBooks[index];
-                  return Dismissible(
-                    key: Key(book.id),
-                    direction: DismissDirection.endToStart,
-                    onDismissed: (_) {
-                      provider.deleteBook(book.id);
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text('"${book.title}" removed from catalog'),
-                          action: SnackBarAction(
-                            label: 'OK',
-                            onPressed: () {},
-                          ),
+                  return BookCard(
+                    book: book,
+                    showSaveButton: false,
+                    showDeleteButton: true,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => BookDetailScreen(book: book),
                         ),
                       );
                     },
-                    background: Container(
-                      color: AppColors.errorColor,
-                      alignment: Alignment.centerRight,
-                      padding: const EdgeInsets.only(right: 20),
-                      child: const Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.delete, color: Colors.white, size: 28),
-                          Text(
-                            'Delete',
-                            style: TextStyle(color: Colors.white, fontSize: 12),
-                          ),
-                        ],
-                      ),
-                    ),
-                    child: BookCard(
-                      book: book,
-                      showSaveButton: false,
-                      showDeleteButton: true,
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => BookDetailScreen(book: book),
-                          ),
-                        );
-                      },
-                      onDelete: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: const Text('Remove Book'),
-                              content: Text('Remove "${book.title}" from your catalog?'),
-                              actions: [
-                                TextButton(
-                                  onPressed: () => Navigator.pop(context),
-                                  child: const Text('Cancel'),
+                    onDelete: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: const Text('Remove Book'),
+                            content: Text('Remove "${book.title}" from your catalog?'),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.pop(context),
+                                child: const Text('Cancel'),
+                              ),
+                              ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.red,
+                                  foregroundColor: Colors.white,
                                 ),
-                                ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.red,
-                                    foregroundColor: Colors.white,
-                                  ),
-                                  onPressed: () {
-                                    provider.deleteBook(book.id);
-                                    Navigator.pop(context);
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text('"${book.title}" removed from catalog'),
-                                      ),
-                                    );
-                                  },
-                                  child: const Text('Remove'),
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      },
-                    ),
+                                onPressed: () {
+                                  provider.deleteBook(book.id);
+                                  Navigator.pop(context);
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text('"${book.title}" removed from catalog'),
+                                    ),
+                                  );
+                                },
+                                child: const Text('Remove'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
                   );
                 },
               ),

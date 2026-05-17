@@ -27,28 +27,14 @@ class BookCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.cardColor,
         borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.06),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
       ),
       child: GestureDetector(
         onTap: onTap,
-        child: IntrinsicHeight(
-          child: Padding(
-            padding: const EdgeInsets.all(10),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  width: 4,
-                  height: double.infinity,
-                  color: AppColors.secondary,
-                  margin: const EdgeInsets.only(right: 10),
-                ),
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
               // LEFT SIDE - Book cover image
               Container(
                 width: 70,

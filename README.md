@@ -36,39 +36,3 @@ _Real-time deletion confirmation and updated catalog status:_
 
 A validated, fully interactive form to manually insert custom books with personal reviews.
 ![Add Custom Book](screenshots/add_book.png)
-
----
-
-## Architecture & Tech Stack
-
-The application follows clean coding patterns and solid structural architectures:
-
-- **Framework**: [Flutter](https://flutter.dev) (Dart)
-- **State Management**: `ChangeNotifierProvider` (`provider` package)
-- **API Integration**: [Open Library API](https://openlibrary.org/developers/api) via custom asynchronous `ApiService`
-
-## Getting Started
-
-### Prerequisites
-
-Make sure you have [Flutter SDK](https://docs.flutter.dev/get-started/install) installed on your system.
-
-### Running the App Locally
-
-1. Clone or navigate to the repository directory:
-
-   ```bash
-   cd digital_library_catalog
-   ```
-
-2. Fetch all package dependencies:
-
-   ```bash
-   flutter pub get
-   ```
-
-3. Launch the application on your choice of device (Desktop, Web, or Mobile Emulator):
-
-   ```bash
-   flutter run
-   ```

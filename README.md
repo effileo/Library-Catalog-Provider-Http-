@@ -1,3 +1,6 @@
+NAME: FITA ALEMAYEHU
+UGR/7071/16
+
 # Digital Library Catalog
 
 A beautiful, production-ready Flutter application designed to search, browse, and curate a personal book catalog using the **Open Library API**. Built with custom, modern UI layouts, responsive user feedback, and robust state management.
